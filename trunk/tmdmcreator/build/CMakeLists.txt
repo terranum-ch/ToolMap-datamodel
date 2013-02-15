@@ -14,7 +14,7 @@ SOURCE_GROUP (header FILES ${HEAD_FILES})
 # WXWIDGETS
 # DEFINE ALL INCLUDES AND SO ON
 SET(WXWINDOWS_USE_GL 0)
-INCLUDE ("../../../build/cmake/FindwxWidgets.cmake")
+INCLUDE ("cmake/FindwxWidgets.cmake")
 
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME} ${HEAD_FILES} ${SRC_FILES})
 

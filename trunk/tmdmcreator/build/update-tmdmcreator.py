@@ -43,7 +43,7 @@ def updateSVN():
 
 
 def buildMacBook():
-  builddir = "/Users/lucien/DATA/PRJ/TOOLMAP2/bin_apps/shpimporter"
+  builddir = "/Users/lucien/DATA/PRJ/DATAMODEL/bin"
   try:
     p = Popen("cmake -GXcode " + GetCmakeDirName() + "  -DCMAKE_OSX_ARCHITECTURES:TEXT=x86_64 -DCMAKE_OSX_DEPLOYMENT_TARGET:TEXT=10.6 -DCMAKE_WXWINDOWS_WXCONFIG_EXECUTABLE:FILE=/Users/lucien/DATA/PROGRAMATION/_LIB/64/_LIBWXSVN/bin/wx-config", shell=True, cwd=builddir)
     p.wait()
