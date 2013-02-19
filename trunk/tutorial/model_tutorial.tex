@@ -9,6 +9,7 @@
 \usepackage{crealp-report}
 \usepackage{upquote} %to force Latex not substitute ' by `
 \usepackage{tocbibind}
+\usepackage{mdwlist}
 %\usepackage{natbib}
 
 \begin{document}
@@ -18,20 +19,20 @@
 
 \section{Introduction}
 This tutorial explains how to create a project ToolMap manually. This approach has the following advantages:
-\begin{enumerate}
+\begin{enumerate*}
   \item It ensures the IDs used
   \item It generates a multilingual model
   \item It allows better monitoring of model changes
-\end{enumerate}
+\end{enumerate*}
 The main disadvantage of this approach is the lack of user interface as well as the need for the user to have some knowledge of SQL. Finally, this approach has been developed to meet the need for rigor in the management of the geological data model.
 
 
 \section{Conceptual Workflow}
 The diagram shown in figure~\ref{fig:conceptual-workflow} illustrates the proposed workflow. User edits the user\_structure.sql and user\_content.txt files. These files as well as base\_structure.sql are used by the software TmDmCreator to produces either:
-\begin{enumerate}
+\begin{enumerate*}
   \item	a SQL file defining the project (output 1)
   \item	a ToolMap project (output 2)
-\end{enumerate}
+\end{enumerate*}
 
 \begin{figure} [htbp]
 	\centering
@@ -43,6 +44,16 @@ The diagram shown in figure~\ref{fig:conceptual-workflow} illustrates the propos
 
 
 \section{Data needed}
+In order to produce a ToolMap project, TmDmCreator needs the following files:
+%\begin{itemize}
+    \begin{description*}
+  \item[base\_structure.sql]\hfill \\ contains the necessary SQL code base for all ToolMap projects. This file should normally not be edited by users
+  \item[user\_structure.sql]\hfill \\ contains the SQL structure describing the layers attributes
+  \item[user\_content.txt]\hfill \\ Is a tabular file (editable in Excel for example) containing the definition of layers, objects, and attribute values.
+\end{description*}
+%\end{itemize}
+The recommended way to work with user\_structure.sql and user\_content.txt is described below
+
 
 \section{Preparing user data}
 
