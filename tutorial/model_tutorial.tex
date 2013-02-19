@@ -58,6 +58,17 @@ The recommended way to work with user\_structure.sql and user\_content.txt is de
 \section{Preparing user data}
 
 \subsection{Layers}
+Open user\_content.txt using a spreadsheet and edit the thematic\_layers part. Each of the layers that we want to export should appear here. The structure is as follows (see figure ???):
+\begin{description*}
+  \item [LAYER\_INDEX] unique identifier of the layer
+  \item [TYPE\_CD] layer spatial type as follow
+    \begin{description*}
+      \item [0] Line
+      \item [1] Point
+      \item [2] Polygon
+    \end{description*}
+  \item [LAYER\_NAME] the layer name. This name will be given to the SHP file when exporting
+\end{description*}
 
 \subsection{Objects}
 
