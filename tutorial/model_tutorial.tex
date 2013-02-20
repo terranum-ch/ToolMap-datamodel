@@ -78,6 +78,7 @@ Open user\_content.txt using a spreadsheet and edit the thematic\_layers part. E
 \end{figure}
 
 \subsection{Objects}
+\label{sec:objects}
 
 Edit the file user\_content.txt to add objects. They must have the following structure (See figure:~\ref{fig:objects}):
 \begin{description*}
@@ -108,46 +109,63 @@ Edit the file user\_structure.sql with Notepad (or even better with Notepad + +)
 -- layer_at1 --
 CREATE TABLE `layer_at1` (
   `OBJECT_ID` int(10) unsigned NOT NULL,
+  -- add user attributes here --
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8
 \end{lstlisting}
-This code is the basic template for creating an attribute table. The number after layer\_at (see line 2) indicates the layer index and refers to the LAYER\_INDEX column in user\_content.txt. In our example layer\_at1 describe the attributes for the layer Boreholes\_PT.
-Below are described the five attributes that can be used as well as the corresponding SQL code
-\begin{description*}
-  \item [Enumeration] \hfill \\
+This code is the basic template for creating an attribute table. The number after layer\_at (see line 2) indicates the layer index and refers to the LAYER\_INDEX column in user\_content.txt. In our example layer\_at1 describe the attributes for the layer Boreholes\_PT. User attributes can then be added on line 4 of this template.
+Below are described the five attributes that can be used in a ToolMap data model as well as the corresponding SQL code
+\subsubsection {Enumeration} 
     \crealplisting{SQL}
     \begin{lstlisting}
     `D_C_UNDERG` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
     \end{lstlisting}
     If you add such fields, then you must also fill the list of supported values (see section~\ref{sec:attribute-values}).
-  \item [Text] \hfill \\
+    \subsubsection {Text}
     \begin{lstlisting}
     `DESCRIPT` varchar(255) DEFAULT NULL,
     \end{lstlisting}
     The number next to the keyword varchar indicates the maximum text length. 
-  \item [Integer] \hfill \\
+    \subsubsection {Integer}
     \begin{lstlisting}
     `NUM_REF` int(11) DEFAULT NULL,       
     \end{lstlisting}
     There is no special option for integer fields
-  \item [Float]  \hfill \\
+  \subsubsection {Float}
 
     \begin{lstlisting}
     `TEMP` decimal(5,2) DEFAULT NULL,
     \end{lstlisting}
     The two digits next to the keyword decimal indicate the field precision and scale. In this example, 5 is the precision and 2 is the scale. The precision represents the number of significant digits that are stored for values, and the scale represents the number of digits that can be stored following the decimal point. In this case, values that can be stored range from -999.99 to 999.99.
-  \item [Date] \hfill \\
+    \subsubsection {Date}
 
     \begin{lstlisting}
     `REF_DATE` date DEFAULT NULL,
     \end{lstlisting}
     There is no special option for date fields
+
+
+\subsection{Attributes values}
+\label{sec:attribute-values}
+For each enumeration field previously added in the user\_structure.sql file, it is necessary to define the allowed values. Therefore it is necessary to edit the attributes section of user\_content.txt. The structure of the Attributes section is shown in Figure~\ref{fig:attributs}. This table is divided into two parts, the first three columns describe the attribute fields, the remaining columns describe the values supported by these fields. Below is a description of each column.
+
+\begin{description*}
+  \item [ATTRIBUT\_ID] attribute unique ID.
+  \item [LAYER\_INDEX] the index of the layer that the attribute refers to. The value 1 shown in the example (Figure 4, row 42 and 43) therefore relates to the theme Boreholes\_PT.
+  \item [ATTRIBUT\_NAME] attribute name. This name will be used as the column name in the exported SHP. Some limitations apply to SHP format for column names, for more information you can refer to \url{http://en.wikipedia.org/wiki/Shapefile#Shapefile\_attribute\_format\_.28.dbf.29} or \url{http://www.gdal.org/ogr/drv\_shapefile.html} 
+  \item [CATALOG\_ID] attribute value unique ID
+  \item [CODE] attribute value code, should not necessarily be unique
+  \item [DESCRIPTION\_0,1,2,3,4,5] attribute value description in up to 5 languages. The order of language is not important, but it must be identical to the one chosen for the objects (see~\ref{sec:objects}).
+
 \end{description*}
 
-
-\subsection{Value domain of the attributes}
-\label{sec:attribute-values}
+\begin{figure} [htbp]
+	\centering
+    \includegraphics[width=.9\textwidth]{img/attributs.png}
+    \caption{Attributes section structure}
+    \label{fig:attributs}
+\end{figure}
 
 
 
