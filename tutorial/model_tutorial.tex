@@ -20,8 +20,8 @@
 \section{Introduction}
 This tutorial explains how to create a ToolMap project manually. This approach has the following advantages:
 \begin{enumerate*}
-  \item It ensures the IDs used
-  \item It generates a multilingual model
+  \item It ensures that the ID remain consistent
+  \item It could generate a multilingual model
   \item It allows better monitoring of model changes
 \end{enumerate*}
 The main disadvantage of this approach is the lack of user interface as well as the need for the user to have some knowledge of SQL. Finally, this approach has been developed to meet the need for rigor in the management of the Swiss geological data model.
@@ -44,7 +44,7 @@ The diagram shown in figure~\ref{fig:conceptual-workflow} illustrates the propos
 
 
 \section{Data needed}
-In order to produce a ToolMap project, TmDmCreator needs the following files:
+In order work, TmDmCreator needs the following files:
 %\begin{itemize}
     \begin{description*}
   \item[base\_structure.sql]\hfill \\ contains the necessary SQL code base for all ToolMap projects. This file should normally not be edited by users
@@ -54,7 +54,7 @@ In order to produce a ToolMap project, TmDmCreator needs the following files:
 %\end{itemize}
 The recommended way to work with user\_structure.sql and user\_content.txt is described below
 
-
+\clearpage
 \section{Preparing user data}
 
 \subsection{Layers}
@@ -69,6 +69,8 @@ Open user\_content.txt using a spreadsheet and edit the thematic\_layers part. E
     \end{description*}
   \item [LAYER\_NAME] the layer name. This name will be given to the SHP file when exporting
 \end{description*}
+
+Make sure you choose an Unicode format (Unicode Text (*.txt) or UTF-16 Unicode Text (*.txt)) when saving from the spreadsheet.
 
 \begin{figure} [hbp]
 	\centering
@@ -85,7 +87,7 @@ Edit the file user\_content.txt to add objects. They must have the following str
   \item [OBJECT\_ID] object unique ID.
   \item [OBJECT\_CD] object code, should not necessarily be unique
   \item [OBJECT\_TYPE\_CD] object spatial type, uses same values as those described above for TYPE\_CD in thematic\_layers
-  \item [THEMATIC\_LAYERS\_LAYER\_INDEX] the index of the layer that the object refers to. The value 1 shown in the example (Figure 2) therefore relates to the theme Boreholes\_PT.
+  \item [THEMATIC\_LAYERS\_LAYER\_INDEX] the index of the layer that the object refers to. The value 1 shown in the example (Figure~\ref{fig:objects}) therefore relates to the theme Boreholes\_PT.
   \item [OBJECT\_DESC\_0,1,2,3,4,5] object description in up to 5 languages.
   \item [OBJECT\_ISFREQ] Set to 1 for frequent objects and 0 otherwise. This parameter is only taken into account for line type objects. Set to 0 for all point or polygon objects.
   \item [SYMBOL\_CD] leave empty
@@ -102,7 +104,7 @@ Edit the file user\_content.txt to add objects. They must have the following str
 
 
 \subsection{Attributes structure}
-Edit the file user\_structure.sql with Notepad (or even better with Notepad + +). For each topic containing attributes, there must be a SQL code of the type:
+Edit the file user\_structure.sql with Notepad (or even better with Notepad + +). For each layer containing attributes, there must be a SQL code of the type:
 
 \crealplisting{SQL}
 \begin{lstlisting}
@@ -116,7 +118,8 @@ CREATE TABLE `layer_at1` (
 \end{lstlisting}
 This code is the basic template for creating an attribute table. The number after layer\_at (see line 2) indicates the layer index and refers to the LAYER\_INDEX column in user\_content.txt. In our example layer\_at1 describe the attributes for the layer Boreholes\_PT. User attributes can then be added on line 4 of this template.
 Below are described the five attributes that can be used in a ToolMap data model as well as the corresponding SQL code
-\subsubsection {Enumeration} 
+\subsubsection {Enumeration}
+\label{sec:enumeration}
     \crealplisting{SQL}
     \begin{lstlisting}
     `D_C_UNDERG` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -148,11 +151,11 @@ Below are described the five attributes that can be used in a ToolMap data model
 
 \subsection{Attributes values}
 \label{sec:attribute-values}
-For each enumeration field previously added in the user\_structure.sql file, it is necessary to define the allowed values. Therefore it is necessary to edit the attributes section of user\_content.txt. The structure of the Attributes section is shown in Figure~\ref{fig:attributs}. This table is divided into two parts, the first three columns describe the attribute fields, the remaining columns describe the values supported by these fields. Below is a description of each column.
+For each enumeration field  previously added in the user\_structure.sql file, it is necessary to define the allowed values. Therefore it is necessary to edit the attributes section of user\_content.txt. The structure of the attributes section is shown in Figure~\ref{fig:attributs}. This table is divided into two parts, the first three columns describe the attribute fields, the remaining columns describe the values supported by these fields. Below is a description of each column.
 
 \begin{description*}
   \item [ATTRIBUT\_ID] attribute unique ID.
-  \item [LAYER\_INDEX] the index of the layer that the attribute refers to. The value 1 shown in the example (Figure 4, row 42 and 43) therefore relates to the theme Boreholes\_PT.
+  \item [LAYER\_INDEX] the index of the layer that the attribute refers to. The value 1 shown in the example (Figure~\ref{fig:attributs}, row 42 and 43) therefore relates to the theme Boreholes\_PT.
   \item [ATTRIBUT\_NAME] attribute name. This name will be used as the column name in the exported SHP. Some limitations apply to SHP format for column names, for more information you can refer to \url{http://en.wikipedia.org/wiki/Shapefile#Shapefile\_attribute\_format\_.28.dbf.29} or \url{http://www.gdal.org/ogr/drv\_shapefile.html} 
   \item [CATALOG\_ID] attribute value unique ID
   \item [CODE] attribute value code, should not necessarily be unique
