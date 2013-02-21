@@ -1,28 +1,24 @@
 format 75
 
-classcanvas 128033 class_ref 128033 // tmdmcreator
+classcanvas 128033 class_ref 128033 // TmDmCreator
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 34 75 2000
+  xyz 34.2 74 2000
 end
 classcanvas 128161 class_ref 128161 // TmDmCopier
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 444 166 2000
-end
-classcanvas 128289 class_ref 134689 // TMDMCOPIER_MODE
-  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 424 31 2005
+  xyz 400.5 183.9 2000
 end
 classcanvas 128417 class_ref 141217 // TmDmProcessor
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 332 422 2000
+  xyz 332.2 422 2000
 end
 classcanvas 128545 class_ref 141345 // TmDmProcessorSimple
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 443 688 2000
+  xyz 443.6 689.1 2000
 end
 classcanvas 128801 class_ref 141473 // TmDmProcessorAttributs
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
-  xyz 57 686 2000
+  xyz 55.8 687.1 2000
 end
 relationcanvas 128673 relation_ref 128033 // <generalisation>
   from ref 128545 z 2001 to ref 128417
@@ -36,7 +32,7 @@ relationcanvas 128929 relation_ref 128161 // <generalisation>
 end
 relationcanvas 129057 relation_ref 128289 // <unidirectional association>
   from ref 128417 z 2001 to ref 128161
-  role_a_pos 596 311 3000 no_role_b
+  role_a_pos 545 294 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end

@@ -26,6 +26,7 @@
 #include <wx/cmdline.h>
 #include <wx/dir.h>
 #include <wx/filename.h>
+#include "tmdmcreator.h"
 
 
 static const wxCmdLineEntryDesc cmdLineDesc[] =
@@ -33,16 +34,21 @@ static const wxCmdLineEntryDesc cmdLineDesc[] =
     { wxCMD_LINE_SWITCH, "h", "help", "show this help message",
         wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
     { wxCMD_LINE_SWITCH, "v", "verbose", "Be more verbose" },
-    { wxCMD_LINE_PARAM, NULL, NULL, "[structure sql file]"},
-    { wxCMD_LINE_PARAM, NULL, NULL, "[content txt file]"},
-    { wxCMD_LINE_PARAM, NULL, NULL, "[result sql file]"},
+    { wxCMD_LINE_SWITCH, "t", "toolmap", "toolmap output" },
+    { wxCMD_LINE_SWITCH, "o", "overwrite", "overwrite output" },    
+    { wxCMD_LINE_PARAM, NULL, NULL, "[base structure sql file]"},
+    { wxCMD_LINE_PARAM, NULL, NULL, "[user structure sql file]"},
+    { wxCMD_LINE_PARAM, NULL, NULL, "[user content txt file]"},
+    { wxCMD_LINE_PARAM, NULL, NULL, "[result file]"},
     { wxCMD_LINE_NONE }
 };
 
 
 
-void PrintArray(const wxArrayString & array, const wxString & msg){
-    wxPrintf(msg + _T("\n"));
+void PrintArray(const wxArrayString & array, const wxString & msg = wxEmptyString){
+    if (msg != wxEmptyString) {
+        wxPrintf(msg + _T("\n"));
+    }
     for (unsigned int i = 0; i< array.GetCount(); i++) {
         wxPrintf(array[i] + _T("\n"));
     }
@@ -73,5 +79,42 @@ int main(int argc, char **argv){
     
     // cmd line is correct !!
     wxPrintf(myLogoTxt);
+    
+    bool bVerbose = parser.Found("verbose");
+    bool bToolMap = parser.Found("toolmap");
+    if (parser.Found("overwrite")) {
+        wxRemoveFile(parser.GetParam(3));
+    }
+    
+    if (bToolMap == true) {
+        wxPrintf(_("Exporting to ToolMap project not supported for now!\n"));
+        return 0;
+    }
+    
+    wxASSERT(parser.GetParamCount() == 4);
+    TmDmCreator myCreator;
+    myCreator.SetBaseSQL(wxFileName(parser.GetParam(0)));
+    myCreator.SetUserSQL(wxFileName(parser.GetParam(1)));
+    myCreator.SetUserContent(wxFileName(parser.GetParam(2)));
+    myCreator.SetOutSQL(wxFileName(parser.GetParam(3)));
+    
+    wxArrayString myErrors;
+    if (myCreator.CheckFiles(myErrors) == false) {
+        if (bVerbose == true) {
+            PrintArray(myErrors);
+        }
+        wxPrintf(_("Error while checking files, aborting!\n"));
+        return 0;
+    }
+    
+    if (myCreator.ProcessFiles(myErrors) == false) {
+        if (bVerbose == true) {
+            PrintArray(myErrors);
+        }
+        wxPrintf(_("Error processing files, aborting\n"));
+        return 0;
+    }
+    
+    wxPrintf(_("Processing succeed!\n"));
     return 0;
 }

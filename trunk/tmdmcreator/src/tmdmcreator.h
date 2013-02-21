@@ -20,26 +20,27 @@
 #ifndef WX_PRECOMP
 #include <wx/wx.h>
 #endif
-
 #include <wx/filename.h>
 
-class tmdmcreator {
+class TmDmCreator {
 private:
     wxFileName m_FileNameBaseSQL;
     wxFileName m_FileNameUserSQL;
     wxFileName m_FileNameUserContent;
     wxFileName m_FileNameOutSQL;
     
+    bool _CheckExistsAndExt(const wxFileName & filename, const wxString & extension, wxArrayString * errormsg);
+    
 public:
-    tmdmcreator();
-    virtual ~tmdmcreator();
-
+    TmDmCreator();
+    virtual ~TmDmCreator();
+    
     void SetBaseSQL(wxFileName value);
     void SetUserSQL(wxFileName value);
     void SetUserContent(wxFileName value);
     void SetOutSQL(wxFileName value);
     
     bool CheckFiles(wxArrayString & errormsg);
-    bool ProcessFiles(wxArrayString & errorsmsg);
+    bool ProcessFiles(wxArrayString & errorsmsg);    
 };
 #endif
