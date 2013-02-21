@@ -1,0 +1,16 @@
+window_sizes 1920 1032 337 1577 839 136
+diagrams
+  active  classdiagram_ref 128033 // tmdmcreator
+    1573 819 100 4 0 0
+end
+show_stereotypes
+selected operation_ref 137377 // CheckFiles
+open
+  operation_ref 135329 // ~tmdmcreator
+  class_ref 134689 // TMDMCOPIER_MODE
+  classrelation_ref 128289 // m_Copier (<unidirectional association>)
+  class_ref 141345 // TmDmProcessorSimple
+  class_ref 141473 // TmDmProcessorAttributs
+  deploymentview_ref 128033 // tmdmdeploy
+end
+end
