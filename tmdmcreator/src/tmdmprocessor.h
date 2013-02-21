@@ -1,7 +1,7 @@
 /***************************************************************************
  tmdmprocessor.h
  -------------------
- copyright            : (C) 2013 CREALP Lucien Schreiber 
+ copyright            : (C) 2013 CREALP Lucien Schreiber
  email                : lucien.schreiber at crealp dot vs dot ch
  ***************************************************************************/
 
@@ -24,40 +24,44 @@
 #include <wx/wx.h>
 #endif
 
-
 class TmDmCopier;
-
 class TmDmProcessor {
-  protected:
+protected:
     TmDmCopier * m_Copier;
-
-
-  public:
+    
+public:
     TmDmProcessor();
-
     virtual ~TmDmProcessor();
-
+    
     int FindBlock(const wxString & blockname);
-
     virtual bool ProcessBlock(int blockstart, TmDmCopier * copier) = 0;
-
 };
+
+
+
+
+
+
+
 class TmDmProcessorSimple : public TmDmProcessor {
-  public:
+public:
     TmDmProcessorSimple();
-
     virtual ~TmDmProcessorSimple();
-
+    
     virtual bool ProcessBlock(int blockstart, TmDmCopier * copier);
-
 };
+
+
+
+
+
+
+
 class TmDmProcessorAttributs : public TmDmProcessor {
-  public:
+public:
     TmDmProcessorAttributs();
-
     virtual ~TmDmProcessorAttributs();
-
+    
     virtual bool ProcessBlock(int blockstart, TmDmCopier * copier);
-
 };
 #endif

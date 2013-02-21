@@ -22,24 +22,22 @@
 #endif
 
 #include <wx/filename.h>
+#include <wx/ffile.h>
 
-enum TMDMCOPIER_MODE {
-    TMDMCOPIER_MODE_ERASE = 0,
-    TMDMCOPIER_MODE_APPEND
-};
 
 
 class TmDmCopier {
 private:
-    TMDMCOPIER_MODE m_CopyMode;
+    wxFFile * m_File;
+    wxArrayString m_Errors;
     
 public:
     TmDmCopier(const wxFileName & destfile);
     virtual ~TmDmCopier();
     
-    void SetCopyMode(TMDMCOPIER_MODE value);
     bool CopyFrom(const wxFileName & filename);
     bool CopyFrom(const wxString & text);
-    bool IsCopyAllowed();
+    
+    wxArrayString GetErrors();
 };
 #endif

@@ -1,7 +1,7 @@
 /***************************************************************************
  tmdmprocessor.cpp
  -------------------
- copyright            : (C) 2013 CREALP Lucien Schreiber 
+ copyright            : (C) 2013 CREALP Lucien Schreiber
  email                : lucien.schreiber at crealp dot vs dot ch
  ***************************************************************************/
 
@@ -20,20 +20,45 @@
 TmDmProcessor::TmDmProcessor() {
 }
 
+
+
 TmDmProcessor::~TmDmProcessor() {
 }
 
+
+
 int TmDmProcessor::FindBlock(const wxString & blockname) {
+    return wxNOT_FOUND;
 }
+
+
+
+
+
+
+
 
 TmDmProcessorSimple::TmDmProcessorSimple() {
 }
 
+
+
 TmDmProcessorSimple::~TmDmProcessorSimple() {
 }
 
+
+
 bool TmDmProcessorSimple::ProcessBlock(int blockstart, TmDmCopier * copier) {
+    return false;
 }
+
+
+
+
+
+
+
+
 
 TmDmProcessorAttributs::TmDmProcessorAttributs() {
 }
@@ -42,5 +67,6 @@ TmDmProcessorAttributs::~TmDmProcessorAttributs() {
 }
 
 bool TmDmProcessorAttributs::ProcessBlock(int blockstart, TmDmCopier * copier) {
+    return false;
 }
 

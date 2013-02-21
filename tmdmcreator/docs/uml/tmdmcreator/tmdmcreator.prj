@@ -1,6 +1,6 @@
 format 75
 "tmdmcreator"
-  revision 3
+  revision 4
   modified_by 33 "lucien"
 
 
@@ -61,7 +61,7 @@ format 75
       size A4
     end
 
-    class 128033 "tmdmcreator"
+    class 128033 "TmDmCreator"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -117,7 +117,7 @@ ${inlines}
 	set_oper operation_ref 137249 // SetOutSQL
       end
 
-      operation 135201 "tmdmcreator"
+      operation 135201 "TmDmCreator"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
@@ -131,7 +131,7 @@ ${inlines}
 	
       end
 
-      operation 135329 "~tmdmcreator"
+      operation 135329 "~TmDmCreator"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
@@ -276,17 +276,6 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      attribute 128289 "m_CopyMode"
-	private type class_ref 134689 // TMDMCOPIER_MODE
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	set_oper operation_ref 128417 // SetCopyMode
-      end
-
       operation 128033 "TmDmCopier"
 	public explicit_return_type ""
 	nparams 1
@@ -314,28 +303,6 @@ ${inlines}
 	
 	
 	
-      end
-
-      operation 128417 "SetCopyMode"
-	force_body_gen public explicit_return_type "void"
-	nparams 1
-	  param in name "value" type class_ref 134689 // TMDMCOPIER_MODE
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  m_CopyMode = ${p0};
-}
-"
-	cpp_name_spec "SetCopyMode"
-	
-	java_name_spec "set${Name}"
-	
-	php_name_spec "set${Name}"
-	
-	python_name_spec "set${Name}"
-	
-	idl_name_spec "set_${name}"
-	set_of_attribute attribute_ref 128289 // m_CopyMode
       end
 
       operation 128545 "CopyFrom"
@@ -368,55 +335,10 @@ ${inlines}
 	
       end
 
-      operation 135457 "IsCopyAllowed"
-	public explicit_return_type "bool"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+      attribute 141985 "m_File"
+	private explicit_type "wxFFile"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-    end
-
-    class 134689 "TMDMCOPIER_MODE"
-      visibility package stereotype "enum"
-      cpp_decl "${comment}enum ${name} {
-${items}
-};
-"
-      java_decl "${comment}${@}${visibility}${final}${abstract}enum ${name}${implements} {
-${items};
-${members}}
-"
-      php_decl "${comment}${visibility}final class ${name} {
-${items}}
-"
-      python_2_2 python_decl "class ${name}:
-${docstring}${members}
-"
-      idl_decl "${comment}enum ${name} {
-${items}};
-"
-      explicit_switch_type ""
-      
-      attribute 128033 "TMDMCOPIER_MODE_ERASE"
-	public type class_ref 134689 // TMDMCOPIER_MODE
-	init_value "0"
-	cpp_decl "  ${name}${value},${comment}"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128161 "TMDMCOPIER_MODE_APPEND"
-	public type class_ref 134689 // TMDMCOPIER_MODE
-	cpp_decl "  ${name}${value},${comment}"
 	java_decl ""
 	php_decl ""
 	python_decl ""
@@ -500,7 +422,6 @@ ${inlines}
 	
 	
       end
-
     end
 
     class 141345 "TmDmProcessorSimple"
@@ -695,7 +616,7 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
-	class_ref 128033 // tmdmcreator
+	class_ref 128033 // TmDmCreator
       end
     end
 
@@ -756,7 +677,6 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
-	class_ref 134689 // TMDMCOPIER_MODE
 	class_ref 128161 // TmDmCopier
       end
     end
