@@ -16,25 +16,27 @@
 #ifndef _TMDMPROCESSOR_H_
 #define _TMDMPROCESSOR_H_
 
-// For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
-
-// Include wxWidgets' headers
 #ifndef WX_PRECOMP
 #include <wx/wx.h>
 #endif
+#include <wx/filename.h>
+#include <wx/wfstream.h>
+#include <wx/txtstrm.h>
+
 
 class TmDmCopier;
 class TmDmProcessor {
 protected:
-    TmDmCopier * m_Copier;
+    wxFileName m_FileSrc;
+    wxFileName m_FileDst;
     
 public:
-    TmDmProcessor();
+    TmDmProcessor(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessor();
     
     int FindBlock(const wxString & blockname);
-    virtual bool ProcessBlock(int blockstart, TmDmCopier * copier) = 0;
+    virtual bool ProcessBlock(int blockstart) = 0;
 };
 
 
@@ -45,10 +47,10 @@ public:
 
 class TmDmProcessorSimple : public TmDmProcessor {
 public:
-    TmDmProcessorSimple();
+    TmDmProcessorSimple(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessorSimple();
     
-    virtual bool ProcessBlock(int blockstart, TmDmCopier * copier);
+    virtual bool ProcessBlock(int blockstart);
 };
 
 
@@ -59,9 +61,9 @@ public:
 
 class TmDmProcessorAttributs : public TmDmProcessor {
 public:
-    TmDmProcessorAttributs();
+    TmDmProcessorAttributs(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessorAttributs();
     
-    virtual bool ProcessBlock(int blockstart, TmDmCopier * copier);
+    virtual bool ProcessBlock(int blockstart);
 };
 #endif
