@@ -1,6 +1,6 @@
 format 75
 "tmdmcreator"
-  revision 4
+  revision 5
   modified_by 33 "lucien"
 
 
@@ -358,21 +358,34 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128289 // m_Copier (<unidirectional association>)
-	relation 128289 --->
-	  a role_name "m_Copier" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+      attribute 148513 "m_FileSrc"
+	protected explicit_type "wxFileName"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
-	    classrelation_ref 128289 // m_Copier (<unidirectional association>)
-	  b parent class_ref 128161 // TmDmCopier
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 148641 "m_FileDst"
+	protected explicit_type "wxFileName"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
 
       operation 135585 "TmDmProcessor"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param in name "src" explicit_type "wxFileName"
+	  param in name "dest" explicit_type "wxFileName"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -446,10 +459,12 @@ ${inlines}
 
       operation 136097 "TmDmProcessorSimple"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param in name "src" explicit_type "wxFileName"
+	  param in name "dest" explicit_type "wxFileName"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -511,10 +526,12 @@ ${inlines}
 
       operation 135841 "TmDmProcessorAttributs"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param in name "src" explicit_type "wxFileName"
+	  param in name "dest" explicit_type "wxFileName"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	

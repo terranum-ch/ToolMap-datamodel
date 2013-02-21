@@ -17,7 +17,9 @@
 #include "tmdmprocessor.h"
 #include "tmdmcopier.h"
 
-TmDmProcessor::TmDmProcessor() {
+TmDmProcessor::TmDmProcessor(const wxFileName & src, const wxFileName & dest) {
+    m_FileSrc = src;
+    m_FileDst = dest;
 }
 
 
@@ -28,6 +30,16 @@ TmDmProcessor::~TmDmProcessor() {
 
 
 int TmDmProcessor::FindBlock(const wxString & blockname) {
+    wxFileInputStream input(m_FileSrc.GetFullPath());
+    wxTextInputStream text(input);
+    long myLineIndex = 0;
+    while(input.IsOk() && !input.Eof() ){
+        wxString myLine = text.ReadLine();
+        if (myLine.StartsWith(blockname)==true){
+            return myLineIndex;
+        }
+        myLineIndex++;
+    }
     return wxNOT_FOUND;
 }
 
@@ -38,7 +50,7 @@ int TmDmProcessor::FindBlock(const wxString & blockname) {
 
 
 
-TmDmProcessorSimple::TmDmProcessorSimple() {
+TmDmProcessorSimple::TmDmProcessorSimple(const wxFileName & src, const wxFileName & dest) : TmDmProcessor(src,dest) {
 }
 
 
@@ -48,7 +60,32 @@ TmDmProcessorSimple::~TmDmProcessorSimple() {
 
 
 
-bool TmDmProcessorSimple::ProcessBlock(int blockstart, TmDmCopier * copier) {
+bool TmDmProcessorSimple::ProcessBlock(int blockstart) {
+    wxString mySQLCols = wxEmptyString;
+    wxString mySQLTxt = wxEmptyString;
+    
+    wxFileInputStream input(m_FileSrc.GetFullPath());
+    wxTextInputStream text(input);
+    long myLineIndex = 0;
+    while(input.IsOk() && !input.Eof() ){
+        if (myLineIndex <= blockstart) {
+            myLineIndex++;
+            continue;
+        }
+        
+        wxString myRow = text.ReadLine();
+        
+        // HERE !!! 
+        
+        
+        
+        myLineIndex++;
+    }
+    return wxNOT_FOUND;
+
+    
+    
+    
     return false;
 }
 
@@ -60,13 +97,13 @@ bool TmDmProcessorSimple::ProcessBlock(int blockstart, TmDmCopier * copier) {
 
 
 
-TmDmProcessorAttributs::TmDmProcessorAttributs() {
+TmDmProcessorAttributs::TmDmProcessorAttributs(const wxFileName & src, const wxFileName & dest) : TmDmProcessor(src,dest) {
 }
 
 TmDmProcessorAttributs::~TmDmProcessorAttributs() {
 }
 
-bool TmDmProcessorAttributs::ProcessBlock(int blockstart, TmDmCopier * copier) {
+bool TmDmProcessorAttributs::ProcessBlock(int blockstart) {
     return false;
 }
 
