@@ -60,32 +60,54 @@ TmDmProcessorSimple::~TmDmProcessorSimple() {
 
 
 
-bool TmDmProcessorSimple::ProcessBlock(int blockstart) {
-    wxString mySQLCols = wxEmptyString;
-    wxString mySQLTxt = wxEmptyString;
+bool TmDmProcessorSimple::ProcessBlock(int blockstart, const wxString & tablename) {
+    wxArrayString mySQLCols;
+    TmDmCopier myCopier(m_FileDst);
     
     wxFileInputStream input(m_FileSrc.GetFullPath());
     wxTextInputStream text(input);
     long myLineIndex = 0;
     while(input.IsOk() && !input.Eof() ){
+        wxString myRow = text.ReadLine();
         if (myLineIndex <= blockstart) {
             myLineIndex++;
             continue;
         }
         
-        wxString myRow = text.ReadLine();
+        if (myLineIndex == blockstart+1) {
+            mySQLCols = wxStringTokenize(myRow, _T("\t"), wxTOKEN_RET_EMPTY);
+            myLineIndex++;
+            continue;
+        }
         
-        // HERE !!! 
+        wxArrayString myValues = wxStringTokenize(myRow, _T("\t"), wxTOKEN_RET_EMPTY_ALL);
+        bool bEmpty = true;
+        for (unsigned int i = 0; i< myValues.GetCount(); i++) {
+            if (myValues[i] != wxEmptyString) {
+                bEmpty = false;
+                break;
+            }
+        }
+        if (bEmpty == true) {
+            // ok empty line found
+            return true;
+        }
         
-        
-        
+        // write insert sentence
+        wxString myInsert = wxString::Format(_T("INSERT INTO `%s` ("), tablename);
+        for (unsigned int i = 0; i< mySQLCols.GetCount(); i++) {
+            myInsert.Append(wxString::Format(_T("%s,"), mySQLCols.Item(i)));
+        }
+        myInsert.RemoveLast();
+        myInsert.Append(_T(") VALUES ("));
+        for (unsigned int i = 0; i< mySQLCols.GetCount(); i++) {
+            myInsert.Append(wxString::Format(_T("\"%s\","), myValues.Item(i)));
+        }
+        myInsert.RemoveLast();
+        myInsert.Append(_T(");\n"));
+        myCopier.CopyFrom(myInsert);
         myLineIndex++;
     }
-    return wxNOT_FOUND;
-
-    
-    
-    
     return false;
 }
 
@@ -103,7 +125,7 @@ TmDmProcessorAttributs::TmDmProcessorAttributs(const wxFileName & src, const wxF
 TmDmProcessorAttributs::~TmDmProcessorAttributs() {
 }
 
-bool TmDmProcessorAttributs::ProcessBlock(int blockstart) {
+bool TmDmProcessorAttributs::ProcessBlock(int blockstart, const wxString & tablename) {
     return false;
 }
 

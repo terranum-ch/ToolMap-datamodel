@@ -23,6 +23,7 @@
 #include <wx/filename.h>
 #include <wx/wfstream.h>
 #include <wx/txtstrm.h>
+#include <wx/tokenzr.h>
 
 
 class TmDmCopier;
@@ -36,7 +37,7 @@ public:
     virtual ~TmDmProcessor();
     
     int FindBlock(const wxString & blockname);
-    virtual bool ProcessBlock(int blockstart) = 0;
+    virtual bool ProcessBlock(int blockstart, const wxString & tablename) = 0;
 };
 
 
@@ -50,7 +51,7 @@ public:
     TmDmProcessorSimple(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessorSimple();
     
-    virtual bool ProcessBlock(int blockstart);
+    virtual bool ProcessBlock(int blockstart, const wxString & tablename);
 };
 
 
@@ -64,6 +65,6 @@ public:
     TmDmProcessorAttributs(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessorAttributs();
     
-    virtual bool ProcessBlock(int blockstart);
+    virtual bool ProcessBlock(int blockstart, const wxString & tablename);
 };
 #endif
