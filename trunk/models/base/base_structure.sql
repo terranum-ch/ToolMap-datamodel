@@ -4,7 +4,7 @@ CREATE TABLE `dmn_attribut_value` (
   `ATTRIBUT_ID` int(11) NOT NULL,
   `CATALOG_ID` int(11) NOT NULL,
   PRIMARY KEY (`ATTRIBUT_ID`,`CATALOG_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- dmn_catalog --
 CREATE TABLE `dmn_catalog` (
@@ -16,7 +16,7 @@ CREATE TABLE `dmn_catalog` (
   `DESCRIPTION_3` varchar(255) DEFAULT NULL,
   `DESCRIPTION_4` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CATALOG_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- dmn_layer_attribut --
 CREATE TABLE `dmn_layer_attribut` (
@@ -24,7 +24,7 @@ CREATE TABLE `dmn_layer_attribut` (
   `LAYER_INDEX` int(11) NOT NULL,
   `ATTRIBUT_NAME` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ATTRIBUT_ID`,`LAYER_INDEX`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- dmn_layer_object --
 CREATE TABLE `dmn_layer_object` (
@@ -43,14 +43,14 @@ CREATE TABLE `dmn_layer_object` (
   `REMARK` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `DMN_LAYER_OBJECT_FKIndex2` (`THEMATIC_LAYERS_LAYER_INDEX`,`OBJECT_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- dmn_layer_type --
 CREATE TABLE `dmn_layer_type` (
   `TYPE_CD` int(10) unsigned NOT NULL COMMENT 'Layer type code',
   `TYPE_DESCRIPTION` varchar(20) NOT NULL COMMENT 'Layer type description',
   PRIMARY KEY (`TYPE_CD`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 INSERT INTO dmn_layer_type VALUES(0,"Line");
@@ -64,7 +64,7 @@ CREATE TABLE `dmn_shortcut_key` (
   `SHORTCUT_KEY` varchar(20) NOT NULL,
   `SHORTCUT_DESC` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`SHORTCUT_CD`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 INSERT INTO dmn_shortcut_key VALUES(1,"F1","");
 INSERT INTO dmn_shortcut_key VALUES(2,"F2","");
@@ -87,7 +87,7 @@ CREATE TABLE `export_poly` (
   `NB_EXPORT` int(11) DEFAULT NULL,
   `PERCENT_SKIPPED` double DEFAULT NULL,
   PRIMARY KEY (`LAYER_INDEX`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- generic_aat --
 CREATE TABLE `generic_aat` (
@@ -96,28 +96,28 @@ CREATE TABLE `generic_aat` (
   PRIMARY KEY (`OBJECT_VAL_ID`,`OBJECT_GEOM_ID`),
   KEY `GENERIC_LINES_has_DMN_LAYER_OBJECT_FKIndex1` (`OBJECT_VAL_ID`),
   KEY `GENERIC_LINES_has_DMN_LAYER_OBJECT_FKIndex2` (`OBJECT_GEOM_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- generic_dmn --
 CREATE TABLE `generic_dmn` (
   `CODE` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Code value',
   `DESCRIPTION` varchar(255) DEFAULT NULL COMMENT 'Code description',
   PRIMARY KEY (`CODE`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- generic_frame --
 CREATE TABLE `generic_frame` (
   `OBJECT_ID` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Feature identifier',
   `OBJECT_GEOMETRY` linestring NOT NULL COMMENT 'Feature geometry',
   PRIMARY KEY (`OBJECT_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- generic_labels --
 CREATE TABLE `generic_labels` (
   `OBJECT_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `OBJECT_GEOMETRY` multipoint NOT NULL,
   PRIMARY KEY (`OBJECT_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- generic_lat --
 CREATE TABLE `generic_lat` (
@@ -126,14 +126,14 @@ CREATE TABLE `generic_lat` (
   PRIMARY KEY (`OBJECT_VAL_ID`,`OBJECT_GEOM_ID`),
   KEY `GENERIC_LABELS_has_DMN_LAYER_OBJECT_FKIndex1` (`OBJECT_VAL_ID`),
   KEY `GENERIC_LABELS_has_DMN_LAYER_OBJECT_FKIndex2` (`OBJECT_GEOM_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- generic_lines --
 CREATE TABLE `generic_lines` (
   `OBJECT_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `OBJECT_GEOMETRY` linestring NOT NULL,
   PRIMARY KEY (`OBJECT_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- generic_notes --
 CREATE TABLE `generic_notes` (
@@ -146,7 +146,7 @@ CREATE TABLE `generic_notes` (
   `DESCRIPTION` text,
   `ISFIXED` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`OBJECT_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- generic_pat --
 CREATE TABLE `generic_pat` (
@@ -155,21 +155,21 @@ CREATE TABLE `generic_pat` (
   PRIMARY KEY (`OBJECT_VAL_ID`,`OBJECT_GEOM_ID`),
   KEY `GENERIC_POINTS_has_DMN_LAYER_OBJECT_FKIndex1` (`OBJECT_VAL_ID`),
   KEY `GENERIC_POINTS_has_DMN_LAYER_OBJECT_FKIndex2` (`OBJECT_GEOM_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- generic_points --
 CREATE TABLE `generic_points` (
   `OBJECT_ID` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Feature identifier',
   `OBJECT_GEOMETRY` multipoint NOT NULL COMMENT 'Feature geometry',
   PRIMARY KEY (`OBJECT_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- lang_def --
 CREATE TABLE `lang_def` (
   `LANG_ID` int(11) NOT NULL,
   `LANG_NAME` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`LANG_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 INSERT INTO lang_def VALUES(0,"Undefined");
@@ -186,7 +186,7 @@ CREATE TABLE `prj_queries` (
   `QUERIES_NAME` varchar(255) NOT NULL,
   `QUERIES_CODE` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`QUERIES_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 INSERT INTO prj_queries VALUES(1,0,"Lines without attribution","SELECT o.OBJECT_ID FROM generic_lines AS o WHERE o.OBJECT_ID NOT IN (SELECT a.OBJECT_GEOM_ID FROM generic_aat AS a)");
 INSERT INTO prj_queries VALUES(2,1,"Points without attribution","SELECT o.OBJECT_ID FROM generic_points AS o WHERE o.OBJECT_ID NOT IN (SELECT a.OBJECT_GEOM_ID FROM generic_pat AS a)");
@@ -207,17 +207,17 @@ CREATE TABLE `prj_settings` (
   `PRJ_SUMMARY` text,
   `PRJ_SNAP_TOLERENCE` int(11) NOT NULL DEFAULT '10',
   PRIMARY KEY (`SETTING_DBK`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-INSERT INTO prj_settings VALUES(1,"Meters","No projection","Combioula_complet",224,"/Users/lucien/DATA/PRJ/TOOLMAP2/projects/test_prjaout/export",0,"/Users/lucien/DATA/PRJ/TOOLMAP2/projects/test_prjaout/backups","CREALP",0);
+INSERT INTO prj_settings VALUES(1,"Meters","No projection","Master",224,"",0,"","SWISSTOPO - CREALP", "", 0);
 
 -- prj_snapping --
 CREATE TABLE `prj_snapping` (
   `TOC_ID` int(11) NOT NULL,
   `SNAPPING_TYPE` int(11) NOT NULL,
   PRIMARY KEY (`TOC_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- prj_stats --
 CREATE TABLE `prj_stats` (
@@ -228,7 +228,7 @@ CREATE TABLE `prj_stats` (
   `INTERSECTION` bigint(20) unsigned DEFAULT '0',
   `DATE_END` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`STAT_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- prj_toc --
 CREATE TABLE `prj_toc` (
@@ -243,14 +243,14 @@ CREATE TABLE `prj_toc` (
   `VERTEX_FLAGS` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`CONTENT_ID`),
   KEY `PRJ_TOC_FKIndex1` (`TYPE_CD`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-INSERT INTO prj_toc VALUES(1,0,"","Lines",1,0,1,0);
-INSERT INTO prj_toc VALUES(2,1,"","Points",1,1,2,0);
-INSERT INTO prj_toc VALUES(3,1,"","Labels",1,2,3,0);
-INSERT INTO prj_toc VALUES(4,1,"","Notes",0,3,4,0);
-INSERT INTO prj_toc VALUES(5,0,"","Frame",1,4,5,0);
+INSERT INTO prj_toc VALUES(1,0,"","Lines",1,0,1,"",0);
+INSERT INTO prj_toc VALUES(2,1,"","Points",1,1,2,"",0);
+INSERT INTO prj_toc VALUES(3,1,"","Labels",1,2,3,"",0);
+INSERT INTO prj_toc VALUES(4,1,"","Notes",0,3,4,"",0);
+INSERT INTO prj_toc VALUES(5,0,"","Frame",1,4,5,"",0);
 
 
 -- shortcut_list --
@@ -260,7 +260,7 @@ CREATE TABLE `shortcut_list` (
   PRIMARY KEY (`OBJECT_ID`,`SHORTCUT_CD`),
   KEY `SHORTCUT_KEYS_has_DMN_LAYER_OBJECT_FKIndex2` (`OBJECT_ID`),
   KEY `SHORTCUT_LIST_FKIndex2` (`SHORTCUT_CD`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- thematic_layers --
 CREATE TABLE `thematic_layers` (
@@ -271,7 +271,7 @@ CREATE TABLE `thematic_layers` (
   `REMARK` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`LAYER_INDEX`),
   KEY `THEMATIC_LAYERS_FKIndex1` (`TYPE_CD`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- zoom_level --
 CREATE TABLE `zoom_level` (
@@ -279,7 +279,7 @@ CREATE TABLE `zoom_level` (
   `SCALE_VALUE` int(10) unsigned NOT NULL,
   `RANK` int(11) DEFAULT NULL,
   PRIMARY KEY (`ZOOM_ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 INSERT INTO zoom_level VALUES(1,5000,2);
 INSERT INTO zoom_level VALUES(2,10000,3);

@@ -25,6 +25,7 @@ TmDmCopier::TmDmCopier(const wxFileName & destfile) {
 
 
 TmDmCopier::~TmDmCopier() {
+    m_File->Flush();
     wxDELETE(m_File);
 }
 
@@ -48,6 +49,7 @@ bool TmDmCopier::CopyFrom(const wxFileName & filename) {
 
 
 bool TmDmCopier::CopyFrom(const wxString & text) {
+    m_File->SeekEnd();
     if (m_File->Write(text) == false) {
         m_Errors.Add(wxString::Format(_("Writing to: %s failed!"), m_File->GetName()));
         return false;

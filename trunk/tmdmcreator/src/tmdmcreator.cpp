@@ -93,17 +93,19 @@ bool TmDmCreator::CheckFiles(wxArrayString & errormsg) {
 bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg) {
     errorsmsg.Clear();
     // Copy structure
-    TmDmCopier myCopier(m_FileNameOutSQL);
-    if (myCopier.CopyFrom(m_FileNameBaseSQL) == false) {
-        errorsmsg.Add(wxString::Format(_("Copying: %s failed!"), m_FileNameBaseSQL.GetFullPath()));
-        return false;
+    { // needed to destroy the copier before processing layers
+        TmDmCopier myCopier(m_FileNameOutSQL);
+        if (myCopier.CopyFrom(m_FileNameBaseSQL) == false) {
+            errorsmsg.Add(wxString::Format(_("Copying: %s failed!"), m_FileNameBaseSQL.GetFullPath()));
+            return false;
+        }
+        
+        if (myCopier.CopyFrom(m_FileNameUserSQL) == false) {
+            errorsmsg.Add(wxString::Format(_("Copying: %s failed!"), m_FileNameUserSQL.GetFullPath()));
+            return false;
+        }
     }
-    
-    if (myCopier.CopyFrom(m_FileNameUserSQL) == false) {
-        errorsmsg.Add(wxString::Format(_("Copying: %s failed!"), m_FileNameUserSQL.GetFullPath()));
-        return false;
-    }
-    
+
     // Process layers
     TmDmProcessorSimple myLayerProc(m_FileNameUserContent, m_FileNameOutSQL);
     int myThematicLayersStart = myLayerProc.FindBlock(_T("thematic_layers"));
@@ -111,7 +113,7 @@ bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg) {
         errorsmsg.Add(wxString::Format(_("'thematic_layers' field not found in %s"), m_FileNameUserContent.GetFullPath()));
         return false;
     }
-    if (myLayerProc.ProcessBlock(myThematicLayersStart)==false) {
+    if (myLayerProc.ProcessBlock(myThematicLayersStart, _T("thematic_layers"))==false) {
         errorsmsg.Add(wxString::Format(_("Processing 'thematic_layers' failed in %s"), m_FileNameUserContent.GetFullPath()));
         return false;
     }

@@ -82,7 +82,7 @@ int main(int argc, char **argv){
     
     bool bVerbose = parser.Found("verbose");
     bool bToolMap = parser.Found("toolmap");
-    if (parser.Found("overwrite")) {
+    if (parser.Found("overwrite") && wxFileExists(parser.GetParam(3))) {
         wxRemoveFile(parser.GetParam(3));
     }
     
