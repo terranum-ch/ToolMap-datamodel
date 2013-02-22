@@ -61,6 +61,10 @@ public:
 
 
 class TmDmProcessorAttributs : public TmDmProcessor {
+private:
+    bool _ProcessAttributesName(int blockstart);
+    bool _ProcessAttributesValues(int blockstart);
+    
 public:
     TmDmProcessorAttributs(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessorAttributs();

@@ -4,12 +4,12 @@ diagrams
     1573 819 90 4 0 0
 end
 show_stereotypes
-selected operation_ref 136097 // TmDmProcessorSimple
+selected operation_ref 144161 // _ProcessAttributesValues
 open
   class_ref 128161 // TmDmCopier
   operation_ref 136481 // ProcessBlock
   class_ref 141345 // TmDmProcessorSimple
-  class_ref 141473 // TmDmProcessorAttributs
+  operation_ref 136609 // ProcessBlock
   deploymentview_ref 128033 // tmdmdeploy
 end
 end

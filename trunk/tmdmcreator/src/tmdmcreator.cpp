@@ -107,16 +107,41 @@ bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg) {
     }
 
     // Process layers
-    TmDmProcessorSimple myLayerProc(m_FileNameUserContent, m_FileNameOutSQL);
-    int myThematicLayersStart = myLayerProc.FindBlock(_T("thematic_layers"));
+    TmDmProcessorSimple myProc(m_FileNameUserContent, m_FileNameOutSQL);
+    int myThematicLayersStart = myProc.FindBlock(_T("thematic_layers"));
     if (myThematicLayersStart == wxNOT_FOUND) {
         errorsmsg.Add(wxString::Format(_("'thematic_layers' field not found in %s"), m_FileNameUserContent.GetFullPath()));
         return false;
     }
-    if (myLayerProc.ProcessBlock(myThematicLayersStart, _T("thematic_layers"))==false) {
+    if (myProc.ProcessBlock(myThematicLayersStart, _T("thematic_layers"))==false) {
         errorsmsg.Add(wxString::Format(_("Processing 'thematic_layers' failed in %s"), m_FileNameUserContent.GetFullPath()));
         return false;
     }
+    
+    // Process objects
+    int myObjectStart = myProc.FindBlock(_T("dmn_layer_object"));
+    if (myObjectStart == wxNOT_FOUND) {
+        errorsmsg.Add(wxString::Format(_("'dmn_layer_object' field not found in %s"), m_FileNameUserContent.GetFullPath()));
+        return false;
+    }
+    if (myProc.ProcessBlock(myObjectStart, _T("dmn_layer_object"))==false) {
+        errorsmsg.Add(wxString::Format(_("Processing 'dmn_layer_object' failed in %s"), m_FileNameUserContent.GetFullPath()));
+        return false;
+    }
+    
+    // Process attributs
+    TmDmProcessorAttributs myProcAttributs (m_FileNameUserContent, m_FileNameOutSQL);
+    int myAttributStart = myProcAttributs.FindBlock(_T("attributs"));
+    if (myAttributStart == wxNOT_FOUND) {
+        errorsmsg.Add(wxString::Format(_("'attributs' field not found in %s"), m_FileNameUserContent.GetFullPath()));
+        return false;
+    }
+    if (myProcAttributs.ProcessBlock(myAttributStart, wxEmptyString)==false) {
+        errorsmsg.Add(wxString::Format(_("Processing 'attributs' failed in %s"), m_FileNameUserContent.GetFullPath()));
+        return false;
+    }
+    
+    
     return true;
 }
 
