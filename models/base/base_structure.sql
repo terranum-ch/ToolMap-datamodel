@@ -29,7 +29,7 @@ CREATE TABLE `dmn_layer_attribut` (
 -- dmn_layer_object --
 CREATE TABLE `dmn_layer_object` (
   `OBJECT_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `OBJECT_CD` int(10) unsigned NOT NULL COMMENT 'Feature code',
+  `OBJECT_CD` varchar(50) NULL COMMENT 'Feature code',
   `OBJECT_TYPE_CD` int(10) unsigned NOT NULL COMMENT 'Spatial object code',
   `THEMATIC_LAYERS_LAYER_INDEX` int(10) unsigned NOT NULL COMMENT 'Associated thematic layer',
   `OBJECT_DESC_0` varchar(255) NOT NULL COMMENT 'Feature description',
@@ -210,7 +210,7 @@ CREATE TABLE `prj_settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-INSERT INTO prj_settings VALUES(1,"Meters","No projection","Master",224,"",0,"","SWISSTOPO - CREALP", "", 0);
+INSERT INTO prj_settings VALUES(1,"Meters","No projection","Master",225,"",0,"","SWISSTOPO - CREALP", "", 0);
 
 -- prj_snapping --
 CREATE TABLE `prj_snapping` (
