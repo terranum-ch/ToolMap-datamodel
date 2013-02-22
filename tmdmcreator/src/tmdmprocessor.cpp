@@ -63,6 +63,8 @@ TmDmProcessorSimple::~TmDmProcessorSimple() {
 bool TmDmProcessorSimple::ProcessBlock(int blockstart, const wxString & tablename) {
     wxArrayString mySQLCols;
     TmDmCopier myCopier(m_FileDst);
+    myCopier.CopyFrom(wxString::Format(_T("\n-- %s --\n"), tablename));
+
     
     wxFileInputStream input(m_FileSrc.GetFullPath());
     wxTextInputStream text(input);
@@ -122,10 +124,141 @@ bool TmDmProcessorSimple::ProcessBlock(int blockstart, const wxString & tablenam
 TmDmProcessorAttributs::TmDmProcessorAttributs(const wxFileName & src, const wxFileName & dest) : TmDmProcessor(src,dest) {
 }
 
+
+
 TmDmProcessorAttributs::~TmDmProcessorAttributs() {
 }
 
-bool TmDmProcessorAttributs::ProcessBlock(int blockstart, const wxString & tablename) {
-    return false;
+
+
+bool TmDmProcessorAttributs::_ProcessAttributesName(int blockstart) {
+    wxArrayString mySQLCols;
+    TmDmCopier myCopier(m_FileDst);
+    myCopier.CopyFrom(wxString::Format(_T("\n-- %s --\n"), _T("dmn_layer_attribut")));
+    int NUM_COLS = 3;
+    wxArrayString myPreviousRow;
+    
+    wxFileInputStream input(m_FileSrc.GetFullPath());
+    wxTextInputStream text(input);
+    long myLineIndex = 0;
+    while(input.IsOk() && !input.Eof() ){
+        wxString myRow = text.ReadLine();
+        if (myLineIndex <= blockstart) {
+            myLineIndex++;
+            continue;
+        }
+        
+        if (myLineIndex == blockstart+1) {
+            mySQLCols = wxStringTokenize(myRow, _T("\t"), wxTOKEN_RET_EMPTY);
+            myLineIndex++;
+            continue;
+        }
+        
+        wxArrayString myValues = wxStringTokenize(myRow, _T("\t"), wxTOKEN_RET_EMPTY_ALL);
+        bool bEmpty = true;
+        for (unsigned int i = 0; i< myValues.GetCount(); i++) {
+            if (myValues[i] != wxEmptyString) {
+                bEmpty = false;
+                break;
+            }
+        }
+        if (bEmpty == true) {
+            // ok empty line found
+            return true;
+        }
+        
+        // check that this row differs from previous
+        wxArrayString myAttributRow;
+        for (unsigned int i = 0; i< NUM_COLS; i++) {
+            myAttributRow.Add(myValues.Item(i));
+        }
+        if (myAttributRow == myPreviousRow) {
+            continue;
+        }
+        myPreviousRow = myAttributRow;
+        
+        
+        wxString myInsert = _T("INSERT INTO `dmn_layer_attribut` VALUES (");
+        for (unsigned int i = 0; i< myAttributRow.GetCount(); i++) {
+            myInsert.Append(wxString::Format(_T("\"%s\","), myAttributRow.Item(i)));
+        }
+        myInsert.RemoveLast();
+        myInsert.Append(_T(");\n"));
+        myCopier.CopyFrom(myInsert);
+        myLineIndex++;
+    }
+    return true;
 }
+
+
+
+bool TmDmProcessorAttributs::_ProcessAttributesValues(int blockstart) {
+    wxArrayString mySQLCols;
+    TmDmCopier myCopier(m_FileDst);
+    myCopier.CopyFrom(wxString::Format(_T("\n-- %s --\n"), _T("attribut values")));
+    int START_COL = 3;
+    
+    wxFileInputStream input(m_FileSrc.GetFullPath());
+    wxTextInputStream text(input);
+    long myLineIndex = 0;
+    while(input.IsOk() && !input.Eof() ){
+        wxString myRow = text.ReadLine();
+        if (myLineIndex <= blockstart) {
+            myLineIndex++;
+            continue;
+        }
+        
+        if (myLineIndex == blockstart+1) {
+            mySQLCols = wxStringTokenize(myRow, _T("\t"), wxTOKEN_RET_EMPTY);
+            myLineIndex++;
+            continue;
+        }
+        
+        
+        wxArrayString myValues = wxStringTokenize(myRow, _T("\t"), wxTOKEN_RET_EMPTY_ALL);
+        bool bEmpty = true;
+        for (unsigned int i = 0; i< myValues.GetCount(); i++) {
+            if (myValues[i] != wxEmptyString) {
+                bEmpty = false;
+                break;
+            }
+        }
+        if (bEmpty == true) {
+            // ok empty line found
+            return true;
+        }
+        
+        // query to dmn_catalog
+        wxString myInsert = _T("INSERT INTO `dmn_catalog` VALUES (");
+        for (unsigned int i = START_COL; i< mySQLCols.GetCount(); i++) {
+            myInsert.Append(wxString::Format(_T("\"%s\","), myValues.Item(i)));
+        }
+        myInsert.RemoveLast();
+        myInsert.Append(_T(");\n"));
+        
+        
+        // query to dmn_attribut_value
+        myInsert.Append(wxString::Format(_T("INSERT INTO `dmn_attribut_value` VALUES (%s, %s);\n"),
+                                         myValues.Item(0), myValues.Item(START_COL)));
+        
+        myCopier.CopyFrom(myInsert);
+        myLineIndex++;
+    }
+    return true;
+}
+
+
+
+bool TmDmProcessorAttributs::ProcessBlock(int blockstart, const wxString & tablename) {
+    if (_ProcessAttributesName(blockstart) == false) {
+        return false;
+    }
+    
+    if (_ProcessAttributesValues(blockstart) == false) {
+        return false;
+    }
+    return true;
+}
+
+
 
