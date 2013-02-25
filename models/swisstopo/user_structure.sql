@@ -108,6 +108,7 @@ CREATE TABLE `layer_at18` (
 
 -- layer_at19 --
 CREATE TABLE `layer_at19` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Fault_Mo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Verti_Mo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Horiz_Mo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -122,6 +123,7 @@ CREATE TABLE `layer_at19` (
 
 -- layer_at20 --
 CREATE TABLE `layer_at20` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Fold_Typ` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Fold_For` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Phase` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -134,6 +136,7 @@ CREATE TABLE `layer_at20` (
 
 -- layer_at21 --
 CREATE TABLE `layer_at21` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Kind` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Plunge_Dir` int(11) DEFAULT NULL,
  `Plunge` int(11) DEFAULT NULL,
@@ -143,6 +146,7 @@ CREATE TABLE `layer_at21` (
 
 -- layer_at22 --
 CREATE TABLE `layer_at22` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Polarity` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Phase` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Phase_Ref` varchar(254) DEFAULT NULL,
@@ -155,6 +159,7 @@ CREATE TABLE `layer_at22` (
 
 -- layer_at23 --
 CREATE TABLE `layer_at23` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Type` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -162,6 +167,7 @@ CREATE TABLE `layer_at23` (
 
 -- layer_at24 --
 CREATE TABLE `layer_at24` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Division` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `System` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Dat_Meth` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -173,6 +179,7 @@ CREATE TABLE `layer_at24` (
  
  -- layer_at25 --
 CREATE TABLE `layer_at25` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Material` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Chemistry` varchar(254) DEFAULT NULL,
@@ -182,6 +189,7 @@ CREATE TABLE `layer_at25` (
  
   -- layer_at26 --
 CREATE TABLE `layer_at26` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Chemistry` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -189,6 +197,7 @@ CREATE TABLE `layer_at26` (
 
   -- layer_at27 --
 CREATE TABLE `layer_at27` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Orient` int(11) DEFAULT NULL,	
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -196,6 +205,7 @@ CREATE TABLE `layer_at27` (
 
  -- layer_at28 --
 CREATE TABLE `layer_at28` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Strati` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Name` varchar(254) DEFAULT NULL,
  `Accessibil` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -206,6 +216,7 @@ CREATE TABLE `layer_at28` (
 
 -- layer_at29 --
 CREATE TABLE `layer_at29` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Cong_Spe` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Name_Horiz` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Orig_Descr` varchar(254) DEFAULT NULL,
@@ -215,6 +226,7 @@ CREATE TABLE `layer_at29` (
 
 -- layer_at31 --
 CREATE TABLE `layer_at31` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -222,6 +234,7 @@ CREATE TABLE `layer_at31` (
 
 -- layer_at32 --
 CREATE TABLE `layer_at32` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Type` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Dip_Direct` int(11) DEFAULT NULL,
  `Dip` int(11) DEFAULT NULL,
@@ -231,6 +244,7 @@ CREATE TABLE `layer_at32` (
  
  -- layer_at33 --
 CREATE TABLE `layer_at33` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Type` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Altitude` decimal (5,2) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
@@ -239,6 +253,7 @@ CREATE TABLE `layer_at33` (
 
 -- layer_at34 --
 CREATE TABLE `layer_at34` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Dip_Direct` int(11) DEFAULT NULL,
  `Dip` int(11) DEFAULT NULL,
  `Height` decimal (5,2) DEFAULT NULL,
@@ -249,6 +264,7 @@ CREATE TABLE `layer_at34` (
 
 -- layer_at35 --
 CREATE TABLE `layer_at35` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Confine` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Altitude` decimal (5,2) DEFAULT NULL,
  `Wa_Table` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -258,6 +274,7 @@ CREATE TABLE `layer_at35` (
 
 -- layer_at36 --
 CREATE TABLE `layer_at36` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Epoch` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Period` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Age` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -268,6 +285,7 @@ CREATE TABLE `layer_at36` (
 
 -- layer_at37 --
 CREATE TABLE `layer_at37` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Epoch` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Period` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Age` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -277,6 +295,7 @@ CREATE TABLE `layer_at37` (
 
 -- layer_at38 --
 CREATE TABLE `layer_at38` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Epoch` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Period` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Age` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -286,6 +305,7 @@ CREATE TABLE `layer_at38` (
 
 -- layer_at39 --
 CREATE TABLE `layer_at39` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Depth_Tot` decimal (5,2) DEFAULT NULL,
  `Targ_Mat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -295,6 +315,7 @@ CREATE TABLE `layer_at39` (
  
  -- layer_at40 --
 CREATE TABLE `layer_at40` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -302,6 +323,7 @@ CREATE TABLE `layer_at40` (
 
 -- layer_at41 --
 CREATE TABLE `layer_at41` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Targ_Mat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
@@ -310,6 +332,7 @@ CREATE TABLE `layer_at41` (
 
 -- layer_at42 --
 CREATE TABLE `layer_at42` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Drill_Mo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Depth_Bedr` decimal (5,2) DEFAULT NULL,
  `D_C_Underg` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
@@ -329,6 +352,7 @@ CREATE TABLE `layer_at42` (
 
 -- layer_at44 --
 CREATE TABLE `layer_at44` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Epoch` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Depth` decimal (5,2) DEFAULT NULL,
@@ -340,6 +364,7 @@ CREATE TABLE `layer_at44` (
 
 -- layer_at45 --
 CREATE TABLE `layer_at45` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Combi` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -347,6 +372,7 @@ CREATE TABLE `layer_at45` (
 
 -- layer_at46 --
 CREATE TABLE `layer_at46` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Rel_Age` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Ref_Year` int(11) DEFAULT NULL,
  `Source` varchar(254) DEFAULT NULL,
@@ -356,6 +382,7 @@ CREATE TABLE `layer_at46` (
 
 -- layer_at47 --
 CREATE TABLE `layer_at47` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Combi` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -363,6 +390,7 @@ CREATE TABLE `layer_at47` (
 
 -- layer_at48 --
 CREATE TABLE `layer_at48` (
+ `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Flow_Con` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Type` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
