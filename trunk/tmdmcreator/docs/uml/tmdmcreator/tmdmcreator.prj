@@ -1,6 +1,6 @@
 format 75
 "tmdmcreator"
-  revision 6
+  revision 7
   modified_by 33 "lucien"
 
 
@@ -250,11 +250,12 @@ ${inlines}
 
       operation 137505 "ProcessFiles"
 	public explicit_return_type "bool"
-	nparams 1
+	nparams 2
 	  param out name "errorsmsg" explicit_type "wxArrayString"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+	  param in name "languagecolumn" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${v0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -378,6 +379,34 @@ ${inlines}
 	idl_decl ""
       end
 
+      attribute 155169 "m_LanguageCol"
+	protected explicit_type "int"
+	init_value "0"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	set_oper operation_ref 150817 // SetLanguageColumn
+      end
+
+      operation 150689 "SwitchCols"
+	protected explicit_return_type "wxString"
+	nparams 2
+	  param in name "cols" explicit_type "wxArrayString"
+	  param in name "values" explicit_type "wxArrayString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 135585 "TmDmProcessor"
 	public explicit_return_type ""
 	nparams 2
@@ -434,6 +463,28 @@ ${inlines}
 	
 	
 	
+      end
+
+      operation 150817 "SetLanguageColumn"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  m_LanguageCol = ${p0};
+}
+"
+	cpp_name_spec "SetLanguageColumn"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 155169 // m_LanguageCol
       end
     end
 

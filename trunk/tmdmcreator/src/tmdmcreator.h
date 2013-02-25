@@ -41,6 +41,6 @@ public:
     void SetOutSQL(wxFileName value);
     
     bool CheckFiles(wxArrayString & errormsg);
-    bool ProcessFiles(wxArrayString & errorsmsg);    
+    bool ProcessFiles(wxArrayString & errorsmsg, int languagecolumn);
 };
 #endif

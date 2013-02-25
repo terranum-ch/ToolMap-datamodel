@@ -1,11 +1,12 @@
-window_sizes 959 1031 253 700 838 136
+window_sizes 1440 852 253 1181 659 136
 diagrams
   active  classdiagram_ref 128033 // tmdmcreator
-    1573 819 90 4 0 0
+    1177 639 90 4 0 0
 end
 show_stereotypes
-selected operation_ref 144161 // _ProcessAttributesValues
+selected operation_ref 150689 // SwitchCols
 open
+  class_ref 128033 // TmDmCreator
   class_ref 128161 // TmDmCopier
   operation_ref 136481 // ProcessBlock
   class_ref 141345 // TmDmProcessorSimple

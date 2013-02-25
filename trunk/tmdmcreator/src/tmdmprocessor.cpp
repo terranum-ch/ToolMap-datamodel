@@ -20,6 +20,7 @@
 TmDmProcessor::TmDmProcessor(const wxFileName & src, const wxFileName & dest) {
     m_FileSrc = src;
     m_FileDst = dest;
+    m_LanguageCol = 0;
 }
 
 
@@ -41,6 +42,31 @@ int TmDmProcessor::FindBlock(const wxString & blockname) {
         myLineIndex++;
     }
     return wxNOT_FOUND;
+}
+
+
+
+wxString TmDmProcessor::SwitchCols(wxArrayString * cols, wxArrayString * values, int item) {
+    if (m_LanguageCol == 0) {
+        return values->Item(item);
+    }
+    
+
+    if(cols->Item(item).Contains(_T("_0")) == true) {
+        return values->Item(item + m_LanguageCol);
+    }
+    
+    wxString myColName = wxString::Format(_T("_%d"), m_LanguageCol);
+    if (cols->Item(item).Contains(myColName) == true) {
+        return values->Item(item - m_LanguageCol);
+    }
+    return values->Item(item);
+}
+
+
+
+void TmDmProcessor::SetLanguageColumn(int value) {
+    m_LanguageCol = value;
 }
 
 
@@ -103,7 +129,7 @@ bool TmDmProcessorSimple::ProcessBlock(int blockstart, const wxString & tablenam
         myInsert.RemoveLast();
         myInsert.Append(_T(") VALUES ("));
         for (unsigned int i = 0; i< mySQLCols.GetCount(); i++) {
-            myInsert.Append(wxString::Format(_T("\"%s\","), myValues.Item(i)));
+            myInsert.Append(wxString::Format(_T("\"%s\","), SwitchCols(&mySQLCols, &myValues, i)));
         }
         myInsert.RemoveLast();
         myInsert.Append(_T(");\n"));
@@ -231,7 +257,7 @@ bool TmDmProcessorAttributs::_ProcessAttributesValues(int blockstart) {
         // query to dmn_catalog
         wxString myInsert = _T("INSERT INTO `dmn_catalog` VALUES (");
         for (unsigned int i = START_COL; i< mySQLCols.GetCount(); i++) {
-            myInsert.Append(wxString::Format(_T("\"%s\","), myValues.Item(i)));
+            myInsert.Append(wxString::Format(_T("\"%s\","), SwitchCols(&mySQLCols, &myValues, i)));
         }
         myInsert.RemoveLast();
         myInsert.Append(_T(");\n"));

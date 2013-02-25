@@ -34,8 +34,9 @@ static const wxCmdLineEntryDesc cmdLineDesc[] =
     { wxCMD_LINE_SWITCH, "h", "help", "show this help message",
         wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
     { wxCMD_LINE_SWITCH, "v", "verbose", "Be more verbose" },
-    { wxCMD_LINE_SWITCH, "t", "toolmap", "toolmap output" },
-    { wxCMD_LINE_SWITCH, "o", "overwrite", "overwrite output" },    
+    { wxCMD_LINE_SWITCH, "t", "toolmap", "toolmap output (default is SQL)" },
+    { wxCMD_LINE_SWITCH, "o", "overwrite", "overwrite output" },
+    { wxCMD_LINE_OPTION, "l", "language", "language column (default is 0)", wxCMD_LINE_VAL_NUMBER, wxCMD_LINE_PARAM_OPTIONAL},
     { wxCMD_LINE_PARAM, NULL, NULL, "[base structure sql file]"},
     { wxCMD_LINE_PARAM, NULL, NULL, "[user structure sql file]"},
     { wxCMD_LINE_PARAM, NULL, NULL, "[user content txt file]"},
@@ -82,6 +83,10 @@ int main(int argc, char **argv){
     
     bool bVerbose = parser.Found("verbose");
     bool bToolMap = parser.Found("toolmap");
+    long myLanguage = 0;
+    if(parser.Found("language", &myLanguage) == true) {
+        wxPrintf(_("Using language column: %ld\n"), myLanguage);
+    }
     if (parser.Found("overwrite") && wxFileExists(parser.GetParam(3))) {
         wxRemoveFile(parser.GetParam(3));
     }
@@ -107,7 +112,7 @@ int main(int argc, char **argv){
         return 0;
     }
     
-    if (myCreator.ProcessFiles(myErrors) == false) {
+    if (myCreator.ProcessFiles(myErrors, myLanguage) == false) {
         if (bVerbose == true) {
             PrintArray(myErrors);
         }
