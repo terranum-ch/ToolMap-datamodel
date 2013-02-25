@@ -114,7 +114,7 @@ CREATE TABLE `layer_at1` (
   -- add user attributes here --
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 \end{lstlisting}
 This code is the basic template for creating an attribute table. The number after layer\_at (see line 2) indicates the layer index and refers to the LAYER\_INDEX column in user\_content.txt. In our example layer\_at1 describe the attributes for the layer Boreholes\_PT. User attributes can then be added on line 4 of this template.
 Below are described the five attributes that can be used in a ToolMap data model as well as the corresponding SQL code

@@ -32,12 +32,17 @@ protected:
     wxFileName m_FileSrc;
     wxFileName m_FileDst;
     
+    int m_LanguageCol;
+    wxString SwitchCols(wxArrayString * cols, wxArrayString * values, int item);
+    
 public:
     TmDmProcessor(const wxFileName & src, const wxFileName & dest);
     virtual ~TmDmProcessor();
     
     int FindBlock(const wxString & blockname);
     virtual bool ProcessBlock(int blockstart, const wxString & tablename) = 0;
+
+    void SetLanguageColumn(int value);
 };
 
 

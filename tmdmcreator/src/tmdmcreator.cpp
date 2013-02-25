@@ -90,7 +90,7 @@ bool TmDmCreator::CheckFiles(wxArrayString & errormsg) {
 
 
 
-bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg) {
+bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg, int languagecolumn) {
     errorsmsg.Clear();
     // Copy structure
     { // needed to destroy the copier before processing layers
@@ -108,6 +108,7 @@ bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg) {
 
     // Process layers
     TmDmProcessorSimple myProc(m_FileNameUserContent, m_FileNameOutSQL);
+    myProc.SetLanguageColumn(languagecolumn);
     int myThematicLayersStart = myProc.FindBlock(_T("thematic_layers"));
     if (myThematicLayersStart == wxNOT_FOUND) {
         errorsmsg.Add(wxString::Format(_("'thematic_layers' field not found in %s"), m_FileNameUserContent.GetFullPath()));
@@ -131,6 +132,7 @@ bool TmDmCreator::ProcessFiles(wxArrayString & errorsmsg) {
     
     // Process attributs
     TmDmProcessorAttributs myProcAttributs (m_FileNameUserContent, m_FileNameOutSQL);
+    myProcAttributs.SetLanguageColumn(languagecolumn);
     int myAttributStart = myProcAttributs.FindBlock(_T("attributs"));
     if (myAttributStart == wxNOT_FOUND) {
         errorsmsg.Add(wxString::Format(_("'attributs' field not found in %s"), m_FileNameUserContent.GetFullPath()));
