@@ -35,18 +35,18 @@ The diagram shown in figure~\ref{fig:conceptual-workflow} illustrates the propos
 \end{enumerate*}
 
 \begin{figure} [htbp]
-	\centering
-    \includegraphics[width=1\textwidth]{img/workflow.pdf}
-    \caption{Conceptual workflow}
-    \label{fig:conceptual-workflow}
+  \centering
+  \includegraphics[width=1\textwidth]{img/workflow.pdf}
+  \caption{Conceptual workflow}
+  \label{fig:conceptual-workflow}
 \end{figure}
 
 
 
 \section{Data needed}
-In order work, TmDmCreator needs the following files:
+For proper operation,  TmDmCreator requires the following files:
 %\begin{itemize}
-    \begin{description*}
+\begin{description*}
   \item[base\_structure.sql]\hfill \\ contains the necessary SQL code base for all ToolMap projects. This file should normally not be edited by users
   \item[user\_structure.sql]\hfill \\ contains the SQL structure describing the layers attributes
   \item[user\_content.txt]\hfill \\ Is a tabular file (editable in Excel for example) containing the definition of layers, objects, and attribute values.
@@ -73,10 +73,10 @@ Open user\_content.txt using a spreadsheet and edit the thematic\_layers part. E
 Make sure you choose an Unicode format (Unicode Text (*.txt) or UTF-16 Unicode Text (*.txt)) when saving from the spreadsheet.
 
 \begin{figure} [hbp]
-	\centering
-    \includegraphics[width=.6\textwidth]{img/layers.png}
-    \caption{List of layers as shown in user\_content.txt}
-    \label{fig:layers}
+  \centering
+  \includegraphics[width=.6\textwidth]{img/layers.png}
+  \caption{List of layers as shown in user\_content.txt}
+  \label{fig:layers}
 \end{figure}
 
 \subsection{Objects}
@@ -96,10 +96,10 @@ Edit the file user\_content.txt to add objects. They must have the following str
 \end{description*}
 
 \begin{figure} [hbp]
-	\centering
-    \includegraphics[height=.9\textheight]{img/objects.png}
-    \caption{Objects structure as described in user\_content.txt}
-    \label{fig:objects}
+  \centering
+  \includegraphics[height=.9\textheight]{img/objects.png}
+  \caption{Objects structure as described in user\_content.txt}
+  \label{fig:objects}
 \end{figure}
 
 
@@ -110,43 +110,47 @@ Edit the file user\_structure.sql with Notepad (or even better with Notepad + +)
 \begin{lstlisting}
 -- layer_at1 --
 CREATE TABLE `layer_at1` (
-  `OBJECT_ID` int(10) unsigned NOT NULL,
-  -- add user attributes here --
-  PRIMARY KEY (`OBJECT_ID`),
-  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+`OBJECT_ID` int(10) unsigned NOT NULL,
+-- add user attributes here --
+PRIMARY KEY (`OBJECT_ID`),
+KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 \end{lstlisting}
 This code is the basic template for creating an attribute table. The number after layer\_at (see line 2) indicates the layer index and refers to the LAYER\_INDEX column in user\_content.txt. In our example layer\_at1 describe the attributes for the layer Boreholes\_PT. User attributes can then be added on line 4 of this template.
 Below are described the five attributes that can be used in a ToolMap data model as well as the corresponding SQL code
+
+
 \subsubsection {Enumeration}
 \label{sec:enumeration}
-    \crealplisting{SQL}
-    \begin{lstlisting}
-    `D_C_UNDERG` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
-    \end{lstlisting}
-    If you add such fields, then you must also fill the list of supported values (see section~\ref{sec:attribute-values}).
-    \subsubsection {Text}
-    \begin{lstlisting}
-    `DESCRIPT` varchar(255) DEFAULT NULL,
-    \end{lstlisting}
-    The number next to the keyword varchar indicates the maximum text length. 
-    \subsubsection {Integer}
-    \begin{lstlisting}
-    `NUM_REF` int(11) DEFAULT NULL,       
-    \end{lstlisting}
-    There is no special option for integer fields
-  \subsubsection {Float}
+\crealplisting{SQL}
+\begin{lstlisting}
+`D_C_UNDERG` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+\end{lstlisting}
+If you add such fields, then you must also fill the list of supported values (see section~\ref{sec:attribute-values}).
+\subsubsection {Text}
+\begin{lstlisting}
+`DESCRIPT` varchar(255) DEFAULT NULL,
+\end{lstlisting}
+The number next to the keyword varchar indicates the maximum text length. 
+\subsubsection {Integer}
+\begin{lstlisting}
+`NUM_REF` int(11) DEFAULT NULL,       
+\end{lstlisting}
+There is no special option for integer fields
 
-    \begin{lstlisting}
-    `TEMP` decimal(5,2) DEFAULT NULL,
-    \end{lstlisting}
-    The two digits next to the keyword decimal indicate the field precision and scale. In this example, 5 is the precision and 2 is the scale. The precision represents the number of significant digits that are stored for values, and the scale represents the number of digits that can be stored following the decimal point. In this case, values that can be stored range from -999.99 to 999.99.
-    \subsubsection {Date}
 
-    \begin{lstlisting}
-    `REF_DATE` date DEFAULT NULL,
-    \end{lstlisting}
-    There is no special option for date fields
+\subsubsection {Float}
+
+\begin{lstlisting}
+`TEMP` decimal(5,2) DEFAULT NULL,
+\end{lstlisting}
+The two digits next to the keyword decimal indicate the field precision and scale. In this example, 5 is the precision and 2 is the scale. The precision represents the number of significant digits that are stored for values, and the scale represents the number of digits that can be stored following the decimal point. In this case, values that can be stored range from -999.99 to 999.99.
+\subsubsection {Date}
+
+\begin{lstlisting}
+`REF_DATE` date DEFAULT NULL,
+\end{lstlisting}
+There is no special option for date fields
 
 
 \subsection{Attributes values}
@@ -164,10 +168,10 @@ For each enumeration field  previously added in the user\_structure.sql file, it
 \end{description*}
 
 \begin{figure} [htbp]
-	\centering
-    \includegraphics[width=.9\textwidth]{img/attributs.png}
-    \caption{Attributes section structure}
-    \label{fig:attributs}
+  \centering
+  \includegraphics[width=.9\textwidth]{img/attributs.png}
+  \caption{Attributes section structure}
+  \label{fig:attributs}
 \end{figure}
 
 
