@@ -246,7 +246,7 @@ CREATE TABLE `layer_at32` (
 CREATE TABLE `layer_at33` (
  `OBJECT_ID` int(10) unsigned NOT NULL,
  `Type` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
- `Altitude` decimal (4,2) DEFAULT NULL,
+ `Altitude` decimal (6,2) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -256,7 +256,7 @@ CREATE TABLE `layer_at34` (
  `OBJECT_ID` int(10) unsigned NOT NULL,
  `Dip_Direct` int(11) DEFAULT NULL,
  `Dip` int(11) DEFAULT NULL,
- `Height` decimal (4,2) DEFAULT NULL,
+ `Height` decimal (6,2) DEFAULT NULL,
  `Mea_Period` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -266,7 +266,7 @@ CREATE TABLE `layer_at34` (
 CREATE TABLE `layer_at35` (
  `OBJECT_ID` int(10) unsigned NOT NULL,
  `Confine` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
- `Altitude` decimal (4,2) DEFAULT NULL,
+ `Altitude` decimal (6,2) DEFAULT NULL,
  `Wa_Table` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -307,7 +307,7 @@ CREATE TABLE `layer_at38` (
 CREATE TABLE `layer_at39` (
  `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
- `Depth_Tot` decimal (4,2) DEFAULT NULL,
+ `Depth_Tot` decimal (6,2) DEFAULT NULL,
  `Targ_Mat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -334,14 +334,14 @@ CREATE TABLE `layer_at41` (
 CREATE TABLE `layer_at42` (
  `OBJECT_ID` int(10) unsigned NOT NULL,
  `Drill_Mo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
- `Depth_Bedr` decimal (4,2) DEFAULT NULL,
+ `Depth_Bedr` decimal (6,2) DEFAULT NULL,
  `D_C_Underg` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Main_Tar` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Targ_Mat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
- `Depth_Tot` decimal (4,2) DEFAULT NULL,
- `Depth_Fm_A` decimal (4,2) DEFAULT NULL,
- `Depth_Fm_B` decimal (4,2) DEFAULT NULL,
- `Depth_WT` decimal (4,2) DEFAULT NULL,
+ `Depth_Tot` decimal (6,2) DEFAULT NULL,
+ `Depth_Fm_A` decimal (6,2) DEFAULT NULL,
+ `Depth_Fm_B` decimal (6,2) DEFAULT NULL,
+ `Depth_WT` decimal (5,2) DEFAULT NULL,
  `Plunge_Dir` int(11) DEFAULT NULL,	
  `Plunge` int(11) DEFAULT NULL,	
  `Ref_Number` int(11) DEFAULT NULL,	
@@ -355,8 +355,8 @@ CREATE TABLE `layer_at44` (
  `OBJECT_ID` int(10) unsigned NOT NULL,
  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
  `Epoch` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
- `Depth` decimal (3,2) DEFAULT NULL,
- `Depth_WT` decimal (3,2) DEFAULT NULL,
+ `Depth` decimal (5,2) DEFAULT NULL,
+ `Depth_WT` decimal (5,2) DEFAULT NULL,
  `Mea_Period` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
