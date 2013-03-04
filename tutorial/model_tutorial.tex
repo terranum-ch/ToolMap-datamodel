@@ -174,6 +174,43 @@ For each enumeration field  previously added in the user\_structure.sql file, it
   \label{fig:attributs}
 \end{figure}
 
+\section{Running TmDmCreator}
+
+TmDmCreator is a command-line utility. As an input, it takes the 3 files described in details above (base structure.sql, user\_structure.sql, user\_content.txt) and produces a resulting SQL file. Its behavior may be controlled using different parameters described bellow (see figure~\ref{fig:command-line-output}).
+
+
+\subsection{Optional parameters}
+\begin{description*}
+  \item [--verbose] Be more verbose, specifically when an error occur. 
+  \item [--toolmap] Write output directly into a ToolMap project instead of a SQL file (not implemented actually). 
+  \item [--overwrite] when specified, the output file will be erased if existing. 
+  \item [--language =<num>] specify the language column to use. Column numbering starts at 0. This option allows multilingual support.
+\end{description*}
+
+\subsection{Mandatory parameters}
+\begin{description*}
+  \item [base structure sql file] base\_structure.sql file name
+  \item [user structure sql file] user\_structure file name
+  \item [user content txt file] user\_content.txt file name
+  \item [result file] either a sql file name for SQL output or a directory name for a ToolMap output.
+\end{description*}
+
+\subsection{Sample}
+A typical TmDmCreator command like will look like the following: 
+
+\crealplisting{bash}
+\begin{lstlisting}
+TmDmCreator --verbose --language=0 base_structure.sql user_structure.sql user_content.txt result.sql
+\end{lstlisting}
+
+\begin{figure} [htbp]
+	\centering
+    \includegraphics[width=1\textwidth]{img/command-line-tmdmcreator.png}
+    \caption{Command line output from TmDmCreator}
+    \label{fig:command-line-output}
+\end{figure}
+
+
 
 
 \end{document}
