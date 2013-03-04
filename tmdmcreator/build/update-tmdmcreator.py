@@ -51,6 +51,13 @@ def buildMacBook():
     print("Error creating makefile")
 
 
+def buildWindow7():
+  builddir = "D:\\PRJ\\DATAMODEL\\bin"
+  try:
+    p = Popen("cmake -G\"Visual Studio 10\" " + GetCmakeDirName() + " -DUSE_MT_LIBRARY:BOOL=1", shell=True, cwd=builddir)
+    p.wait()
+  except:
+    print("Error creating makefile")
 
 if __name__ == '__main__':
   root = Tk()
@@ -65,5 +72,8 @@ if __name__ == '__main__':
 
   button2 = Button(myContainer1, text="Configure MacBook", command=buildMacBook)
   button2.pack()
+  
+  button4 = Button(myContainer1, text="Configure Window 7", command=buildWindow7)
+  button4.pack()
 
   root.mainloop()
