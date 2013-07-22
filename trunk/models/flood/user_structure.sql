@@ -1,0 +1,76 @@
+-- layer_at1 --
+CREATE TABLE `layer_at1` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Flooding` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Debris_flo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Erosion` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Author` varchar(254) DEFAULT NULL, 
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- layer_at2 --
+CREATE TABLE `layer_at2` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `NoMatrix` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- layer_at3 --
+CREATE TABLE `layer_at3` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- layer_at4 --
+CREATE TABLE `layer_at4` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- layer_at5 --
+CREATE TABLE `layer_at5` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+-- layer_at6 --
+CREATE TABLE `layer_at6` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- layer_at7 --
+CREATE TABLE `layer_at7` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- layer_at8 --
+CREATE TABLE `layer_at8` (
+  `OBJECT_ID` int(10) unsigned NOT NULL,
+  `Status` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Remarks` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`OBJECT_ID`),
+  KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
