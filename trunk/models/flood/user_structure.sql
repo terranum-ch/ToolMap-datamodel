@@ -1,9 +1,12 @@
 -- layer_at1 --
 CREATE TABLE `layer_at1` (
   `OBJECT_ID` int(10) unsigned NOT NULL,
-  `Flooding` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
-  `Debris_flo` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
-  `Erosion` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Flood` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Flood_stat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Dflow` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Dflow_stat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Eros` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Eros_stat` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
   `Author` varchar(254) DEFAULT NULL, 
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -23,6 +26,7 @@ CREATE TABLE `layer_at2` (
 CREATE TABLE `layer_at3` (
   `OBJECT_ID` int(10) unsigned NOT NULL,
   `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Recur_age` int (11) DEFAULT NULL,
   `Remarks` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -32,6 +36,7 @@ CREATE TABLE `layer_at3` (
 CREATE TABLE `layer_at4` (
   `OBJECT_ID` int(10) unsigned NOT NULL,
   `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Recur_age` int (11) DEFAULT NULL,
   `Remarks` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -41,6 +46,7 @@ CREATE TABLE `layer_at4` (
 CREATE TABLE `layer_at5` (
   `OBJECT_ID` int(10) unsigned NOT NULL,
   `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Recur_age` int (11) DEFAULT NULL,
   `Remarks` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
@@ -51,6 +57,7 @@ CREATE TABLE `layer_at5` (
 CREATE TABLE `layer_at6` (
   `OBJECT_ID` int(10) unsigned NOT NULL,
   `Process` int(11) DEFAULT NULL COMMENT 'ENUMERATION',
+  `Recur_age` int (11) DEFAULT NULL,
   `Remarks` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`OBJECT_ID`),
   KEY `LAYER_ATX_FKIndex1` (`OBJECT_ID`)
