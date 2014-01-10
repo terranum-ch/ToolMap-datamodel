@@ -210,7 +210,7 @@ CREATE TABLE `prj_settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-INSERT INTO prj_settings VALUES(1,"Meters","Swiss projection (CH1903)","Master",225,"",0,"","SWISSTOPO - CREALP", "", 0);
+INSERT INTO prj_settings VALUES(1,"Degrees (DD)","World (WGS84)","Master",225,"",0,"","SWISSTOPO - CREALP", "", 0);
 
 -- prj_snapping --
 CREATE TABLE `prj_snapping` (
