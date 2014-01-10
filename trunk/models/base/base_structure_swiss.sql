@@ -196,7 +196,7 @@ INSERT INTO prj_queries VALUES(3,2,"Labels without attribution","SELECT o.OBJECT
 -- prj_settings --
 CREATE TABLE `prj_settings` (
   `SETTING_DBK` int(11) NOT NULL AUTO_INCREMENT,
-  `PRJ_UNIT` varchar(10) NOT NULL,
+  `PRJ_UNIT` varchar(45) NOT NULL,
   `PRJ_PROJECTION` varchar(45) NOT NULL,
   `PRJ_NAME` varchar(45) NOT NULL,
   `PRJ_VERSION` int(11) NOT NULL,
@@ -206,11 +206,15 @@ CREATE TABLE `prj_settings` (
   `PRJ_AUTHORS` varchar(255) DEFAULT NULL,
   `PRJ_SUMMARY` text,
   `PRJ_SNAP_TOLERENCE` int(11) NOT NULL DEFAULT '10',
+  `PRJ_LANG_ACTIVE` int(11) NOT NULL DEFAULT '0',
+  `PRJ_BEZIER_APPROX` float NOT NULL DEFAULT '0.5',
+  `PRJ_BEZIER_WIDTH` float NOT NULL DEFAULT '1',
+  `PRJ_BEZIER_NB_VERTEX` int(11) NOT NULL DEFAULT '10',
+  `PRJ_BEZIER_METHOD` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`SETTING_DBK`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
-INSERT INTO prj_settings VALUES(1,"Meters","Swiss projection (CH1903)","Master",225,"",0,"","SWISSTOPO - CREALP", "", 0);
+INSERT INTO prj_settings VALUES(1,"Meters","Swiss projection (CH1903)","Master",229,"",0,"","SWISSTOPO - CREALP", "", 10, 0, 0.5, 1, 10, 0);
 
 -- prj_snapping --
 CREATE TABLE `prj_snapping` (
