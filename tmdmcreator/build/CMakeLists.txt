@@ -24,3 +24,5 @@ IF (WIN32)
   INCLUDE ("cmake/Use_visualstudioMT.cmake")
 ENDIF (WIN32)
 
+INCLUDE(cmake/create_installer.cmake)
+
