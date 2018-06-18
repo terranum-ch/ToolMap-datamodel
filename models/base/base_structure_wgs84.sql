@@ -214,7 +214,7 @@ CREATE TABLE `prj_settings` (
   PRIMARY KEY (`SETTING_DBK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO prj_settings VALUES(1,"Degrees (DD)","World (WGS84)","Master",229,"",0,"","SWISSTOPO - CREALP", "", 10, 0, 0.5, 1, 10, 0);
+INSERT INTO prj_settings VALUES(1,"Degrees (DD)","World (WGS84)","Master",230,"",0,"","SWISSTOPO - TERRANUM", "", 10, 0, 0.5, 1, 10, 0);
 
 -- prj_snapping --
 CREATE TABLE `prj_snapping` (
@@ -245,16 +245,18 @@ CREATE TABLE `prj_toc` (
   `RANK` int(11) DEFAULT NULL,
   `SYMBOLOGY` mediumtext,
   `VERTEX_FLAGS` tinyint(4) DEFAULT NULL,
+  `LABEL_VISIBLE` tinyint(1) DEFAULT '0',
+  `LABEL_DEF` mediumtext DEFAULT NULL, 
   PRIMARY KEY (`CONTENT_ID`),
   KEY `PRJ_TOC_FKIndex1` (`TYPE_CD`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 
-INSERT INTO prj_toc VALUES(1,0,"","Lines",1,0,1,"",0);
-INSERT INTO prj_toc VALUES(2,1,"","Points",1,1,2,"",0);
-INSERT INTO prj_toc VALUES(3,1,"","Labels",1,2,3,"",0);
-INSERT INTO prj_toc VALUES(4,1,"","Notes",0,3,4,"",0);
-INSERT INTO prj_toc VALUES(5,0,"","Frame",1,4,5,"",0);
+INSERT INTO prj_toc VALUES(1,0,"","Lines",1,0,1,"",0, 0, NULL);
+INSERT INTO prj_toc VALUES(2,1,"","Points",1,1,2,"",0, 0, NULL);
+INSERT INTO prj_toc VALUES(3,1,"","Labels",1,2,3,"",0, 0, NULL);
+INSERT INTO prj_toc VALUES(4,1,"","Notes",0,3,4,"",0, 0, NULL);
+INSERT INTO prj_toc VALUES(5,0,"","Frame",1,4,5,"",0, 0, NULL);
 
 
 -- shortcut_list --
