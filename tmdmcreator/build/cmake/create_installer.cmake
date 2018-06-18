@@ -1,9 +1,9 @@
 
-FIND_PACKAGE(Subversion) 
-IF(Subversion_FOUND) 
-  Subversion_WC_INFO(${PROJECT_SOURCE_DIR} MY) 
-  MESSAGE("Current revision is ${MY_WC_REVISION}") 
-ENDIF(Subversion_FOUND) 
+#FIND_PACKAGE(Subversion)
+#IF(Subversion_FOUND)
+#  Subversion_WC_INFO(${PROJECT_SOURCE_DIR} MY)
+#  MESSAGE("Current revision is ${MY_WC_REVISION}")
+#ENDIF(Subversion_FOUND)
 
 install(
   TARGETS ${CMAKE_PROJECT_NAME}
